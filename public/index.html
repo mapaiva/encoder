@@ -37,11 +37,11 @@
             element.innerHTML = `
     <div class="card" style="width: 100%">
       <div class="card-body">
-        <h5 class="card-title">${job.ID}</h5>
+        <h5 class="card-title">#${job.id} - ${job.file.name}</h5>
         <h6 class="card-subtitle mb-2 text-muted">${
-          job.Progress.CurrentTime
-        } - ${job.Progress.CurrentBitrate}</h6>
-        <h6 class="card-subtitle mb-2 text-muted">Status: ${job.Status}</h6>
+          job.progress.CurrentTime
+        } - ${job.progress.CurrentBitrate}</h6>
+        <h6 class="card-subtitle mb-2 text-muted">Status: ${job.status}</h6>
       </div>
       <div style="padding: 1rem; padding-top: 0;">
         <div class="progress" style="height: 20px">
@@ -51,9 +51,9 @@
             aria-valuenow="75"
             aria-valuemin="0"
             aria-valuemax="100"
-            style="width: ${job.Progress.Progress.toFixed(2)}%"
+            style="width: ${job.progress.Progress.toFixed(2)}%"
           >
-            ${job.Progress.Progress.toFixed(2)}%
+            ${job.progress.Progress.toFixed(2)}%
           </div>
         </div>
       </div>

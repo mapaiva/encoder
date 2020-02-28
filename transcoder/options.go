@@ -4,15 +4,12 @@ import (
 	"os"
 	"path"
 	"strings"
-
-	"github.com/xfrr/goffmpeg/models"
 )
 
 // Options defines options for transcoding a video.
 type Options struct {
-	InputPath  string
-	OutputPath string
-	OnProgress func(models.Progress) error
+	InputPath  string `json:"input_path"`
+	OutputPath string `json:"output_path"`
 }
 
 // OptionsFrom returns a set of standard options given a file info.

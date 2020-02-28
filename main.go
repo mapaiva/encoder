@@ -33,9 +33,10 @@ func transcode(scheduler *job.Scheduler) {
 		transcoder := transcoder.NewFfmpeg(options)
 		job := job.Job{
 			ID:         strconv.Itoa(i),
-			File:       file,
+			File:       job.File{Name: file.Name(), Size: file.Size()},
 			Status:     job.StatusRunning,
 			Transcoder: transcoder,
+			Options:    options,
 		}
 		go scheduler.Schedule(job)
 	}
