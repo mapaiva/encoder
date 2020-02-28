@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"github.com/labstack/echo"
+	"github.com/labstack/echo/middleware"
 	"github.com/mapaiva/encoder/job"
 )
 
@@ -20,6 +21,11 @@ type Server struct {
 // Start starts a new server.
 func (s *Server) Start() error {
 	e := echo.New()
+	e.Use(middleware.Recover())
+	e.Use(middleware.CORS())
+	e.Use(middleware.LoggerWithConfig(middleware.LoggerConfig{
+		Format: "time=${time_rfc3339_nano} method=${method}, uri=${uri}, status=${status} latency=${latency_human} error=${error}\n",
+	}))
 	e.GET("/jobs", s.Jobs)
 	return e.Start(":1323")
 }
